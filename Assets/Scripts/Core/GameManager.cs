@@ -54,12 +54,14 @@ namespace JungleVoodoo.Core
             var buildingSystem = new BuildingSystem(timerSystem, resourceSystem);
             var troopSystem    = new TroopSystem(timerSystem, resourceSystem);
             var combatSystem   = new CombatSystem(playFabManager);
+            var gearSystem     = new GearSystem(resourceSystem);
 
             ServiceLocator.Instance.Register(timerSystem);
             ServiceLocator.Instance.Register(resourceSystem);
             ServiceLocator.Instance.Register(buildingSystem);
             ServiceLocator.Instance.Register(troopSystem);
             ServiceLocator.Instance.Register(combatSystem);
+            ServiceLocator.Instance.Register(gearSystem);
 
             StartCoroutine(InitializeGame(authService, playerDataService, resourceSystem));
         }
@@ -93,6 +95,7 @@ namespace JungleVoodoo.Core
                 onSuccess: profile =>
                 {
                     resourceSystem.Initialize(profile);
+                    ServiceLocator.Instance.Get<Systems.GearSystem>().Initialize(profile);
                     loadDone = true;
                 },
                 onFailure: err =>

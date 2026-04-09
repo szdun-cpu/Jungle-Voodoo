@@ -20,6 +20,13 @@ namespace JungleVoodoo.Systems
         /// Sent to CloudScript so server-side combat can apply type multipliers.
         /// </summary>
         public Dictionary<string, int> AttackerComposition;
+
+        /// <summary>
+        /// Aggregated gear bonuses from the hero leading this march.
+        /// Null if no hero is assigned. Sent to CloudScript for server-authoritative application.
+        /// Populate via GearSystem.GetHeroGearBonuses(heroId) before calling ResolveCombat.
+        /// </summary>
+        public HeroGearBonuses AttackerGearBonuses;
     }
 
     [Serializable]
@@ -30,6 +37,15 @@ namespace JungleVoodoo.Systems
         public Dictionary<string, int>  DefenderSurvivors;
         public Dictionary<string, long> LootGained;
         public string                   BattleReportId;
+
+        /// <summary>
+        /// Gear archetype IDs that dropped from this raid.
+        /// Client calls GearSystem.HandleRaidLoot(DroppedGearIds, DroppedGemIds) on receipt.
+        /// </summary>
+        public List<string> DroppedGearIds;
+
+        /// <summary>Gem archetype IDs that dropped from this raid.</summary>
+        public List<string> DroppedGemIds;
     }
 
     /// <summary>
@@ -129,6 +145,7 @@ namespace JungleVoodoo.Systems
                 ["targetX"]              = request.TargetX,
                 ["targetY"]              = request.TargetY,
                 ["attackerComposition"]  = request.AttackerComposition,
+                ["attackerGearBonuses"]  = request.AttackerGearBonuses,
             };
 
             _playFab.ExecuteCloudScript(

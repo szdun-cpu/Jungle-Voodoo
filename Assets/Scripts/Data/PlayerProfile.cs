@@ -36,6 +36,10 @@ namespace JungleVoodoo.Data
         public List<ActiveTimer>     Timers      = new();
         public List<ActiveHero>      Heroes      = new();
 
+        // Gear
+        public List<GearInstance> GearInventory = new();
+        public List<GemInstance>  GemInventory  = new();
+
         // Social
         public string TribeId;
         public string TribeName;
@@ -123,10 +127,16 @@ namespace JungleVoodoo.Data
     [Serializable]
     public class ActiveHero
     {
-        public string HeroId;
-        public int    Level;
-        public long   Xp;
-        public bool   IsOnMarch;
-        public string AssignedMarchId;
+        public string   HeroId;
+        public int      Level;
+        public long     Xp;
+        public bool     IsOnMarch;
+        public string   AssignedMarchId;
+
+        /// <summary>
+        /// Gear instance IDs equipped in each slot, indexed by (int)GearSlot.
+        /// Null or empty string = slot is empty. Length must always equal 8.
+        /// </summary>
+        public string[] EquippedGearInstanceIds = new string[8];
     }
 }

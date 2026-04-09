@@ -110,8 +110,23 @@ namespace JungleVoodoo.Core
             public const string BaseHUD              = "UI/BaseHUD";
             public const string BuildingPanel        = "UI/BuildingPanel";
             public const string WorldMapPanel        = "UI/WorldMapPanel";
+            public const string EquipmentPanel       = "UI/EquipmentPanel";
+            public const string GearInventoryPanel   = "UI/GearInventoryPanel";
             public const string BuildingPrefabPrefix = "Prefabs/Buildings/";
             public const string TroopPrefabPrefix    = "Prefabs/Troops/";
+            public const string GearPrefabPrefix     = "Prefabs/Gear/";
+            public const string GemPrefabPrefix      = "Prefabs/Gems/";
+        }
+
+        /// <summary>Gear piece and gem asset ID prefixes. Individual IDs live in GearData assets.</summary>
+        public static class Gear
+        {
+            // Rarity display colors (hex) for UI borders
+            public const string ColorCommon    = "#9E9E9E";
+            public const string ColorUncommon  = "#4CAF50";
+            public const string ColorRare      = "#2196F3";
+            public const string ColorEpic      = "#9C27B0";
+            public const string ColorLegendary = "#FF9800";
         }
 
         /// <summary>PlayerPrefs keys for local persistence.</summary>
