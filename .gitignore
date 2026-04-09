@@ -1,0 +1,74 @@
+# Unity auto-generated folders
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+
+# MemoryCaptures can get large
+[Mm]emory[Cc]aptures/
+
+# Asset meta data should only be ignored when working with the asset server
+# but needs to be kept when working with local assets
+# *.meta
+
+# Unity3D generated meta files
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+
+# Unity3D generated file on crash reports
+sysinfo.txt
+
+# Builds
+*.apk
+*.aab
+*.unitypackage
+*.app
+
+# Crashlytics generated file
+crashlytics-build.properties
+
+# Packed Addressables (local build artifacts)
+[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
+[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.json
+[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.hash
+
+# Visual Studio / Rider IDE
+.vs/
+.idea/
+*.csproj
+*.sln
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.pidb
+
+# JetBrains
+*.DotSettings.user
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# dotenv (never commit secrets)
+.env
+.env.*
+!.env.example
+
+# Node (if using CloudScript locally)
+node_modules/
+
+# IMPORTANT: Keep these
+# Packages/manifest.json  — shared dependency list
+# Packages/packages-lock.json — locked versions
+# All .meta files — required by Unity asset database

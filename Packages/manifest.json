@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "com.unity.addressables": "1.21.21",
+    "com.unity.inputsystem": "1.8.2",
+    "com.unity.textmeshpro": "3.0.9",
+    "com.unity.nuget.newtonsoft-json": "3.2.1",
+    "com.unity.mobile.notifications": "2.3.2",
+    "com.unity.analytics": "5.1.1",
+    "com.unity.profiling.core": "1.0.2",
+    "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
+    "com.playfab.unity-sdk": "https://github.com/PlayFab/UnitySDK.git#master"
+  },
+  "scopedRegistries": []
+}
