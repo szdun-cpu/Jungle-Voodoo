@@ -5,14 +5,70 @@ using JungleVoodoo.Data;
 
 namespace JungleVoodoo.Data
 {
-    public enum TroopClass
+    /// <summary>
+    /// The five primary combat troop types that form a pentagonal
+    /// rock-paper-scissors advantage cycle:
+    ///
+    ///   WitchDoctor → beats → Harpy
+    ///   Harpy       → beats → Gorilla
+    ///   Gorilla     → beats → Zombie
+    ///   Zombie      → beats → Exorcist
+    ///   Exorcist    → beats → WitchDoctor
+    ///
+    /// "Beats" means the attacker deals bonus damage (TypeAdvantage.StrongMultiplier)
+    /// and the defender's effective HP is reduced.
+    ///
+    /// Scout and Siege are utility types outside the cycle.
+    /// </summary>
+    public enum TroopType
     {
-        Infantry,   // Zombie Shambler, Cursed Warrior, Swamp Revenant
-        Ranged,     // Bone Thrower, Hex Archer
-        Caster,     // Voodoo Witch, Death Witch
-        Cavalry,    // Spirit Beast
-        Siege,      // Voodoo Doll
-        Scout       // Shadow Wraith
+        WitchDoctor,    // Strong vs Harpy,     weak vs Exorcist
+        Exorcist,       // Strong vs WitchDoctor, weak vs Zombie
+        Gorilla,        // Strong vs Zombie,     weak vs Harpy
+        Zombie,         // Strong vs Exorcist,   weak vs Gorilla
+        Harpy,          // Strong vs Gorilla,    weak vs WitchDoctor
+
+        // Utility (outside the advantage cycle)
+        Scout,          // Shadow Wraith — reconnaissance only
+        Siege           // Voodoo Doll   — structure damage bonus
+    }
+
+    /// <summary>
+    /// Lookup table for the pentagonal type-advantage system.
+    /// Use GetMultiplier() in CombatSystem (and mirror the same table in CloudScript).
+    /// </summary>
+    public static class TypeAdvantage
+    {
+        /// <summary>Attack power multiplier when the attacker has type advantage.</summary>
+        public const float StrongMultiplier = 1.5f;
+
+        /// <summary>Attack power multiplier when the attacker has type disadvantage.</summary>
+        public const float WeakMultiplier   = 0.67f; // ≈ 1 / 1.5
+
+        /// <summary>
+        /// Returns the effective attack multiplier for <paramref name="attacker"/>
+        /// fighting <paramref name="defender"/>.
+        /// </summary>
+        public static float GetMultiplier(TroopType attacker, TroopType defender)
+        {
+            if (Beats(attacker, defender)) return StrongMultiplier;
+            if (Beats(defender, attacker)) return WeakMultiplier;
+            return 1f;
+        }
+
+        /// <summary>Returns true if <paramref name="a"/> has type advantage over <paramref name="b"/>.</summary>
+        public static bool Beats(TroopType a, TroopType b)
+        {
+            return (a, b) switch
+            {
+                (TroopType.WitchDoctor, TroopType.Harpy)       => true,
+                (TroopType.Harpy,       TroopType.Gorilla)     => true,
+                (TroopType.Gorilla,     TroopType.Zombie)      => true,
+                (TroopType.Zombie,      TroopType.Exorcist)    => true,
+                (TroopType.Exorcist,    TroopType.WitchDoctor) => true,
+                _                                              => false
+            };
+        }
     }
 
     public enum TroopTier { T1 = 1, T2 = 2, T3 = 3, T4 = 4, Special = 5 }
@@ -29,7 +85,7 @@ namespace JungleVoodoo.Data
         public string     DisplayName;
         [TextArea(2, 3)]
         public string     Description;
-        public TroopClass Class;
+        public TroopType  Type;
         public TroopTier  Tier;
         public Sprite     Icon;
         public GameObject Prefab;

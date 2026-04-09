@@ -58,19 +58,48 @@ namespace JungleVoodoo.Core
             public const string VoodooAltar    = "voodoo_altar";
         }
 
-        /// <summary>Troop type IDs — must match TroopData asset names.</summary>
+        /// <summary>
+        /// Troop type IDs — must match TroopData asset names.
+        ///
+        /// Pentagonal type-advantage cycle (see TypeAdvantage in TroopData.cs):
+        ///   WitchDoctor → beats → Harpy → beats → Gorilla
+        ///   → beats → Zombie → beats → Exorcist → beats → WitchDoctor
+        /// </summary>
         public static class Troops
         {
-            public const string ZombieShambler = "zombie_shambler";
-            public const string BoneThrower    = "bone_thrower";
-            public const string VoodooWitch    = "voodoo_witch";
-            public const string CursedWarrior  = "cursed_warrior";
-            public const string SwampRevenant  = "swamp_revenant";
-            public const string HexArcher      = "hex_archer";
-            public const string SpiritBeast    = "spirit_beast";
-            public const string DeathWitch     = "death_witch";
-            public const string VoodooDoll     = "voodoo_doll";
-            public const string ShadowWraith   = "shadow_wraith";
+            // ── Witch Doctor (strong vs Harpy, weak vs Exorcist) ─────────────
+            public const string WitchDoctorT1 = "witch_doctor_t1";  // Apprentice Shaman
+            public const string WitchDoctorT2 = "witch_doctor_t2";  // Cursed Shaman
+            public const string WitchDoctorT3 = "witch_doctor_t3";  // Dark Shaman
+            public const string WitchDoctorT4 = "witch_doctor_t4";  // High Witch Doctor
+
+            // ── Exorcist (strong vs WitchDoctor, weak vs Zombie) ─────────────
+            public const string ExorcistT1    = "exorcist_t1";      // Bone Priest
+            public const string ExorcistT2    = "exorcist_t2";      // Spirit Breaker
+            public const string ExorcistT3    = "exorcist_t3";      // Soul Warden
+            public const string ExorcistT4    = "exorcist_t4";      // Void Exorcist
+
+            // ── Gorilla (strong vs Zombie, weak vs Harpy) ────────────────────
+            public const string GorillaT1     = "gorilla_t1";       // Jungle Brute
+            public const string GorillaT2     = "gorilla_t2";       // Cursed Ape
+            public const string GorillaT3     = "gorilla_t3";       // Voodoo Gorilla
+            public const string GorillaT4     = "gorilla_t4";       // Ancient Silverback
+
+            // ── Zombie (strong vs Exorcist, weak vs Gorilla) ─────────────────
+            public const string ZombieT1      = "zombie_t1";        // Zombie Shambler
+            public const string ZombieT2      = "zombie_t2";        // Plague Zombie
+            public const string ZombieT3      = "zombie_t3";        // Swamp Revenant
+            public const string ZombieT4      = "zombie_t4";        // Ancient Dead
+
+            // ── Harpy (strong vs Gorilla, weak vs WitchDoctor) ───────────────
+            public const string HarpyT1       = "harpy_t1";         // Jungle Harpy
+            public const string HarpyT2       = "harpy_t2";         // Cursed Harpy
+            public const string HarpyT3       = "harpy_t3";         // Storm Harpy
+            public const string HarpyT4       = "harpy_t4";         // Death Harpy
+
+            // ── Utility (outside the advantage cycle) ────────────────────────
+            public const string ShadowWraith  = "shadow_wraith";    // Scout
+            public const string VoodooDoll    = "voodoo_doll";      // Siege
         }
 
         /// <summary>Addressable asset keys for UI panels and prefabs.</summary>

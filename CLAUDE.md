@@ -50,15 +50,23 @@ Packages/
 | Alliance / Clan | Tribe |
 | Guild Leader | High Shaman |
 | Team Leader / Hero | Witch Doctor |
-| Infantry T1 | Zombie Shambler |
-| Infantry T2 | Cursed Warrior |
-| Infantry T3 | Swamp Revenant |
-| Ranged T1 | Bone Thrower |
-| Ranged T3 | Hex Archer |
-| Cavalry | Spirit Beast |
-| Caster | Voodoo Witch / Death Witch |
 | Siege | Voodoo Doll |
 | Scout | Shadow Wraith |
+
+### Combat Troop Types — Pentagonal Advantage Cycle
+
+Five combat troop types form a rock-paper-scissors cycle. Each type has T1–T4 tiers.
+
+| Type | T1 Name | T4 Name | Beats | Weak To |
+|---|---|---|---|---|
+| Witch Doctor | Apprentice Shaman | High Witch Doctor | Harpy | Exorcist |
+| Exorcist | Bone Priest | Void Exorcist | Witch Doctor | Zombie |
+| Gorilla | Jungle Brute | Ancient Silverback | Zombie | Harpy |
+| Zombie | Zombie Shambler | Ancient Dead | Exorcist | Gorilla |
+| Harpy | Jungle Harpy | Death Harpy | Gorilla | Witch Doctor |
+
+**Type advantage = 1.5× attack power. Type disadvantage = 0.67× attack power.**
+The full table is in `TypeAdvantage.Beats()` (TroopData.cs) and must be mirrored in `CloudScript/main.js`.
 | Primary Currency | Spirit Energy |
 | Military Material | Bones |
 | Food / Sustenance | Dark Herbs |
